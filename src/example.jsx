@@ -12,8 +12,10 @@ import {
   handleRemoveItemFromLayout
 } from "./helpers";
 
+
 import { SIDEBAR_ITEMS, SIDEBAR_ITEM, COMPONENT, COLUMN } from "./constants";
 import shortid from "shortid";
+import AntDTree from "./AntdTree";
 
 const Container = () => {
   const initialLayout = initialData.layout;
@@ -156,13 +158,14 @@ const Container = () => {
             isLast
           />
         </div>
+        <AntDTree/>
 
-        <TrashDropZone
+        {/* <TrashDropZone
           data={{
             layout
           }}
           onDrop={handleDropToTrashBin}
-        />
+        /> */}
       </div>
     </div>
   );
