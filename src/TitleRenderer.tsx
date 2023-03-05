@@ -36,8 +36,16 @@ const TitleRenderer = (node:any) => {
           // }
         };
 
+        const onMouseEnter11= (event:any) => {
+           // console.log(event);
+          }
 
-    return <div >
+          const onMouseDown = (event:any) => {
+            //console.log(event);
+          }
+
+
+    return <div onMouseOut={onMouseDown}>
       
       <DropZone
             data={{

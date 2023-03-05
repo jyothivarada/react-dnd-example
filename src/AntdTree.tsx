@@ -38,11 +38,13 @@ const AntDTree: React.FC = () => {
   const [expandedKeys] = useState(['0-0', '0-0-0', '0-0-0-0']);
   const ref = useRef(null);
 
+  const [enableDrag, setEnableDrag] = useState(true);
 
 
 
-  const onDragEnter: TreeProps['onDragEnter'] = (info) => {
-    console.log(info);
+
+  const onDragEnter= (info : any) => {
+    console.log("on drag enter"+info);
     // expandedKeys 需要受控时设置
     // setExpandedKeys(info.expandedKeys)
   };
@@ -141,18 +143,45 @@ const AntDTree: React.FC = () => {
       </div>;
   }
 
+  const onDragOver = (info : any) => {
+    console.log(info);
+    // expandedKeys 需要受控时设置
+    // setExpandedKeys(info.expandedKeys)
+  };
+
+  const allowdrop = (info: any) => {
+    console.log(info);
+    return true;
+  }
+
+  const draggableFn = (info: any) => {
+    return enableDrag;
+  }
+  
+  const onbuttonclick = (info: any) => {
+    setEnableDrag(!enableDrag);
+  }
+
+
   return (
+    <div>
+    <button  onClick={onbuttonclick} >Test</button>
     <Tree
       //className="draggable-tree"
+      allowDrop={allowdrop}
       defaultExpandedKeys={expandedKeys}
-      //draggable
+      draggable = {draggableFn}
       blockNode
+      onDragOver={onDragOver}
       //onDragEnter={onDragEnter}
-      //onDrop={onDrop}
+      onDrop={onDrop}
       treeData={gData}
-      //titleRender={(node) => <TitleRenderer node={node}/>}
-      titleRender = {titleRenderer}
+      onDragEnter={onDragEnter}
+      titleRender={(node) => <TitleRenderer node={node}/>}
+      //titleRender = {titleRenderer}
+     
     />
+    </div>
   );
 };
 
